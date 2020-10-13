@@ -11,7 +11,7 @@ app.disable('etag'); // causes 304: not modified response, not sure what it's us
 app.get('/', (req, res) => {
     // res.send('Hello World!');
     res.render('todo.ejs');
-    console.log(res.statusCode);
+    // console.log(res.statusCode);
 });
 
 app.post('/', (req, res) => {
