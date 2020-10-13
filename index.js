@@ -18,4 +18,6 @@ app.post('/', (req, res) => {
     console.log(req.body);
 })
 
-app.listen(3000, () => console.log("Server Up and running"));
+if(process.env.NODE_ENV !== 'test'){
+    app.listen(3000, () => console.log("Server Up and running"));
+}
