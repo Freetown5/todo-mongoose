@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
 
+// mongodb+srv://I_Con:<password>@cluster0.lfwrb.mongodb.net/<dbname>?retryWrites=true&w=majority 
+
 // app.use("/static", express.static("public"));
 app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); 
 
 app.set("view engine", "ejs");
 app.disable('etag'); // causes 304: not modified response, not sure what it's use for. Something related to caching?
