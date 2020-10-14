@@ -21,3 +21,5 @@ app.post('/', (req, res) => {
 if(process.env.NODE_ENV !== 'test'){
     app.listen(3000, () => console.log("Server Up and running"));
 }
+
+module.exports = app;
