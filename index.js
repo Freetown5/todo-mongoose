@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const TodoTask = require("./models/TodoTask");
 
 dotenv.config();
 mongoose.set("useFindAndModify", false);
@@ -24,8 +25,17 @@ app.get('/', (req, res) => {
     res.render('todo.ejs');
 });
 
-app.post('/', (req, res) => {
-    console.log(req.body);
+app.post('/', async (req, res) => {
+    const todoTask = new TodoTask({
+        content: req.body.content
+    });
+
+    try {
+        await todoTask.save();
+        res.redirect("/");
+    } catch (err) {
+        res.redirect("/");
+    }
 });
 
 module.exports = app;
