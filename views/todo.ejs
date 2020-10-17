@@ -16,11 +16,13 @@
                 <button type="submit"><span class="fas fa-plus"></span></button>
             </form>
             <ul class="todo-list">
-                <li class="todo-list-item">
-                    <h2 class="todo-list-item-name">Some text</h2>
-                    <a href="" class="edit"><span class="fas fa-edit"></span></a>
-                    <a href="" class="remove"><span class="fas fa-times"></span></a>
-                </li>
+                <% todoTasks.forEach(details => { %>
+                    <li class="todo-list-item">
+                        <h2 class="todo-list-item-name"><%= details.content %></h2>
+                        <a href="/edit/<%= details._id %>" class="edit"><span class="fas fa-edit"></span></a>
+                        <a href="/remove/<%=details._id %>" class="remove"><span class="fas fa-times"></span></a>
+                    </li>
+                <% }) %>
             </ul>
         </div>
     </div>

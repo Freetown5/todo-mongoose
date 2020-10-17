@@ -22,15 +22,15 @@ app.set("view engine", "ejs");
 app.disable('etag'); // causes 304: not modified response, not sure what it's use for. Something related to caching?
 
 app.get('/', (req, res) => {
-    res.render('todo.ejs');
+    TodoTask.find({}, (err, tasks) => {
+        res.render('todo.ejs', { todoTasks: tasks });
+    })
 });
 
 app.post('/', async (req, res) => {
     const todoTask = new TodoTask({
         content: req.body.content
     });
-
-    console.log(todoTask);
 
     try {
         await todoTask.save();
