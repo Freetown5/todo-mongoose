@@ -30,6 +30,8 @@ app.post('/', async (req, res) => {
         content: req.body.content
     });
 
+    console.log(todoTask);
+
     try {
         await todoTask.save();
         res.redirect("/");
