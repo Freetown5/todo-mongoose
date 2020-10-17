@@ -8,6 +8,14 @@ describe('/', () => {
         expect(response.statusCode).toBe(200);
     });
 
+    it("GET" + '/', async () => {
+        const response = await request(app)
+            .get('/');
+        console.log(response);
+        expect(response.statusCode).toBe(200);
+        expect(Array.isArray(response.body)).toBeTruthy;
+    })
+
     it("POST" + '/', async () => {
         const response = await request(app)
             .post('/')
