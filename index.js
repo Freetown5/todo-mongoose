@@ -33,6 +33,7 @@ app.post('/', async (req, res) => {
     });
 
     try {
+        console.log(todoTask.content);
         await todoTask.save();
         res.redirect("/");
     } catch (err) {
