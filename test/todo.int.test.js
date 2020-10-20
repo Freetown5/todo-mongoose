@@ -12,6 +12,12 @@ describe('/', () => {
         const response = await request(app)
             .get('/');
         console.log(response);
+        //Can't find actual data anywhere in the response body besides under "text"
+        //Game plan: Make the test push data to the DB, then write an
+        //expect clause checking the text to see if it's there
+        
+        //Future plan: figure out how to get the app to send test data
+        //to one collection and real data to another
         expect(response.statusCode).toBe(200);
         expect(Array.isArray(response.body)).toBeTruthy;
     })
