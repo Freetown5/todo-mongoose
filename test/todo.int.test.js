@@ -1,6 +1,7 @@
 const request = require("supertest");
 const app = require("../index");
 const task = require("../test/mocks/task.json");
+const getTask = require("../test/mocks/get-task.json");
 
 describe('/', () => {
     test('/', async () => {
@@ -11,11 +12,12 @@ describe('/', () => {
     it("GET" + '/', async () => {
         const response = await request(app)
             .get('/');
-        console.log(response);
         //Can't find actual data anywhere in the response body besides under "text"
         //Game plan: Make the test push data to the DB, then write an
         //expect clause checking the text to see if it's there
-        
+        app.post(getTask);
+        expect(response.text).toContain(getTask.content);
+
         //Future plan: figure out how to get the app to send test data
         //to one collection and real data to another
         expect(response.statusCode).toBe(200);
