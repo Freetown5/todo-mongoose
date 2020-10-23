@@ -1,0 +1,1 @@
+Todo tutorial, this time with mongoose and an attempt at adding tests (difficult to do with an empty request body object). Article here: https://medium.com/@diogo.fg.pinheiro/simple-to-do-list-app-with-node-js-and-mongodb-chapter-2-3780a1c5b039
