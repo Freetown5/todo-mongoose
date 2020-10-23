@@ -21,11 +21,20 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.disable('etag'); // causes 304: not modified response, not sure what it's use for. Something related to caching?
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     TodoTask.find({}, (err, tasks) => {
         res.render('todo.ejs', { todoTasks: tasks });
     })
 });
+
+app.route("/remove/:id")
+    .get((req, res) => {
+        const id = req.params.id;
+        TodoTask.findByIdAndRemove(id, err => {
+            if(err) return res.send(500, err);
+            res.redirect("/");
+        });
+    });
 
 app.route("/edit/:id")
    .get((req, res) => {
@@ -48,7 +57,6 @@ app.post('/', async (req, res) => {
     });
 
     try {
-        console.log(todoTask.content);
         await todoTask.save();
         res.redirect("/");
     } catch (err) {

@@ -10,12 +10,14 @@ describe('/', () => {
     });
 
     it("GET" + '/', async () => {
+        const responseFirst = await request(app)
+            .post('/')
+            .send(getTask);
         const response = await request(app)
             .get('/');
         //Can't find actual data anywhere in the response body besides under "text"
         //Game plan: Make the test push data to the DB, then write an
         //expect clause checking the text to see if it's there
-        app.post(getTask);
         expect(response.text).toContain(getTask.content);
 
         //Future plan: figure out how to get the app to send test data
